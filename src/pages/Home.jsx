@@ -188,7 +188,7 @@ function Home() {
             <div className="md:pr-8">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 text-primary-700 text-xs font-bold uppercase tracking-wide mb-6 border border-blue-100">
                 <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse" />
-                Specialis Laravel & MySQL
+                Specialis WebApps
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
                 JASA PEMBUATAN <br className="hidden lg:block"/>
