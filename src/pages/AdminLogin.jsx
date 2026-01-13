@@ -14,7 +14,7 @@ export default function AdminLogin() {
     e.preventDefault()
     setLoading(true)
     setMessage('')
-    
+
     try {
       const response = await api.login(email, password)
       if (response.success) {
@@ -57,7 +57,7 @@ export default function AdminLogin() {
               placeholder="admin@example.com"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
             <input

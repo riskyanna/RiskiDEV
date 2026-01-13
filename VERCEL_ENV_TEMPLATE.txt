@@ -1,6 +1,6 @@
 DB_HOST=gateway01.ap-southeast-1.prod.aws.tidbcloud.com
 DB_PORT=4000
 DB_USER=2Snau4GyVtzeoZ8.root
-DB_PASSWORD=bi1co5WktMyAtsU5
+DB_PASSWORD=(ISI_PASSWORD_KAMU_DISINI)
 DB_NAME=portfolio_db
 DB_SSL=true

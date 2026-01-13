@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
 import fastworkLogo from '../assets/logo fastwork.webp'
 
@@ -88,7 +89,7 @@ function Home() {
       }`}>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            <div className="flex-shrink-0">
+            <div className="flex-shrink-0 cursor-pointer" onClick={(e) => scrollToSection(e, 'home')}>
               <div className="flex items-center gap-2">
                 <div className="bg-primary-600 px-3 py-1.5 rounded-lg">
                   <h2 className="text-xl font-bold text-white tracking-tight">
@@ -329,6 +330,43 @@ function Home() {
           </div>
         </div>
       </section>
+
+
+      {/* Mobile App Promo Banner - Upgraded */}
+      <div className="relative py-8 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 overflow-hidden">
+         {/* Abstract Shapes */}
+         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
+            <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl mix-blend-screen animate-blob"></div>
+            <div className="absolute top-10 right-10 w-40 h-40 bg-pink-500 rounded-full blur-3xl mix-blend-screen animate-blob animation-delay-2000"></div>
+         </div>
+         
+         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-1">
+               <div className="flex items-center gap-4 text-center md:text-left">
+                  <div className="hidden md:flex w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 items-center justify-center text-3xl shadow-lg">
+                    📱
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-white mb-1">Butuh Aplikasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Android & iOS?</span></h3>
+                    <p className="text-indigo-200 text-sm">Tersedia paket khusus Mahasiswa & UMKM. Siap publish ke Play Store!</p>
+                  </div>
+               </div>
+               
+               <Link 
+                 to="/mobile-app"
+                 className="group relative inline-flex items-center gap-2 bg-white text-indigo-900 px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-900/20"
+               >
+                 <span>Lihat Layanan App</span>
+                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                 </svg>
+                 
+                 {/* Shine Effect */}
+                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
+               </Link>
+            </div>
+         </div>
+      </div>
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
