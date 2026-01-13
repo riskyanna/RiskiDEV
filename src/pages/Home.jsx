@@ -193,7 +193,7 @@ function Home() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight tracking-tight">
                 JASA PEMBUATAN <br className="hidden lg:block"/>
                 <span className="text-gray-900">SISTEM WEB</span> <br/>
-                <span className="text-primary-600">SEKOLAH & KANTOR</span>
+                <span className="text-primary-600">PROFESIONAL</span>
               </h1>
               <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl leading-relaxed font-medium">
                 Responsive & <span className="text-gray-900 font-bold border-b-2 border-primary-200">Terintegrasi Admin Panel</span>.
