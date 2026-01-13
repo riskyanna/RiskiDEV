@@ -68,6 +68,20 @@ function Home() {
     window.open('https://wa.me/62895396836264?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20website%20portfolio', '_blank')
   }
 
+  const handleContactSubmit = (e) => {
+    e.preventDefault()
+    const formData = new FormData(e.target)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const whatsapp = formData.get('whatsapp')
+    const message = formData.get('message')
+    
+    const subject = `Pesan Project dari ${name}`
+    const body = `Halo Riski,\n\nSaya tertarik bikin website.\n\nDetail:\nNama: ${name}\nEmail: ${email}\nWA: ${whatsapp}\n\nPesan:\n${message}`
+    
+    window.location.href = `mailto:riskycas23@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+  }
+
   const scrollToSection = (e, id) => {
     e.preventDefault()
     const element = document.getElementById(id)
@@ -921,10 +935,11 @@ function Home() {
             </div>
 
             {/* Contact Form */}
-            <form className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
+            <form onSubmit={handleContactSubmit} className="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20">
               <div className="space-y-5">
                 <div>
                   <input 
+                    name="name"
                     type="text" 
                     placeholder="Nama Anda" 
                     required
@@ -933,6 +948,7 @@ function Home() {
                 </div>
                 <div>
                   <input 
+                    name="email"
                     type="email" 
                     placeholder="Email Anda" 
                     required
@@ -941,6 +957,7 @@ function Home() {
                 </div>
                 <div>
                   <input 
+                    name="whatsapp"
                     type="tel" 
                     placeholder="No. WhatsApp" 
                     required
@@ -949,6 +966,7 @@ function Home() {
                 </div>
                 <div>
                   <textarea 
+                    name="message"
                     rows="5" 
                     placeholder="Ceritakan tentang project Anda..." 
                     required
