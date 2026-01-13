@@ -1,6 +1,13 @@
 
 const API_URL = '/api'
 
+const getHeaders = (isJson = true) => {
+  const headers = isJson ? { 'Content-Type': 'application/json' } : {}
+  const token = localStorage.getItem('token')
+  if (token) headers['Authorization'] = `Bearer ${token}`
+  return headers
+}
+
 export const api = {
   login: async (email, password) => {
     const res = await fetch(`${API_URL}/login`, {
@@ -21,7 +28,7 @@ export const api = {
     const isFormData = data instanceof FormData
     const res = await fetch(`${API_URL}/portfolio`, {
       method: 'POST',
-      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      headers: getHeaders(!isFormData),
       body: isFormData ? data : JSON.stringify(data)
     })
     return res.json()
@@ -31,7 +38,7 @@ export const api = {
     const isFormData = data instanceof FormData
     const res = await fetch(`${API_URL}/portfolio/${id}`, {
       method: 'PUT',
-      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      headers: getHeaders(!isFormData),
       body: isFormData ? data : JSON.stringify(data)
     })
     return res.json()
@@ -39,7 +46,8 @@ export const api = {
 
   deletePortfolio: async (id) => {
     const res = await fetch(`${API_URL}/portfolio/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: getHeaders(false)
     })
     return res.json()
   },
@@ -67,7 +75,7 @@ export const api = {
   addPricing: async (data) => {
     const res = await fetch(`${API_URL}/pricing`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
       body: JSON.stringify(data)
     })
     return res.json()
@@ -76,7 +84,7 @@ export const api = {
   updatePricing: async (id, data) => {
     const res = await fetch(`${API_URL}/pricing/${id}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(true),
       body: JSON.stringify(data)
     })
     return res.json()
@@ -84,7 +92,8 @@ export const api = {
 
   deletePricing: async (id) => {
     const res = await fetch(`${API_URL}/pricing/${id}`, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: getHeaders(false)
     })
     return res.json()
   }

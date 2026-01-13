@@ -18,8 +18,9 @@ export default function AdminLogin() {
     try {
       const response = await api.login(email, password)
       if (response.success) {
-        // Save user info to local storage for simple persistence
+        // Save user info and token
         localStorage.setItem('user', JSON.stringify(response.user))
+        localStorage.setItem('token', response.token)
         navigate('/admin/dashboard')
       } else {
         setMessage(response.message || 'Login failed')

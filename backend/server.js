@@ -5,6 +5,9 @@ import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
 import bcrypt from 'bcryptjs'
+import jwt from 'jsonwebtoken'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 import { fileURLToPath } from 'url'
 import { db } from './db.js'
 
@@ -13,9 +16,36 @@ const __dirname = path.dirname(__filename)
 
 const app = express()
 const port = 3000
+const JWT_SECRET = process.env.JWT_SECRET || 'riski-secure-key-2026'
 
-app.use(cors())
+// Security Middleware
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" } // Allow images to be loaded
+}))
+app.use(cors()) // In production, restrictive CORS is better
 app.use(express.json())
+
+// Rate Limiting (Prevent DDoS)
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100 // limit each IP to 100 requests per windowMs
+})
+app.use('/api/', limiter)
+
+// Auth Middleware
+const authenticateToken = (req, res, next) => {
+  const authHeader = req.headers['authorization']
+  const token = authHeader && authHeader.split(' ')[1]
+  
+  if (token == null) return res.sendStatus(401) // Unauthorized
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) return res.sendStatus(403) // Forbidden
+    req.user = user
+    next()
+  })
+}
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 // Multer Config
@@ -61,7 +91,8 @@ app.post('/api/login', async (req, res) => {
     }
 
     if (isMatch) {
-      res.json({ success: true, user: user })
+      const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: '24h' })
+      res.json({ success: true, user: { id: user.id, email: user.email }, token: token })
     } else {
       res.status(401).json({ success: false, message: 'Invalid credentials' })
     }
@@ -90,7 +121,7 @@ app.get('/api/portfolio', async (req, res) => {
 })
 
 // Add Portfolio (with Image Upload)
-app.post('/api/portfolio', upload.single('image'), async (req, res) => {
+app.post('/api/portfolio', authenticateToken, upload.single('image'), async (req, res) => {
   const { title, category, description, project_url, item_type } = req.body
   const image_url = req.file ? req.file.filename : req.body.image_url 
   const type = item_type || 'web'
@@ -105,7 +136,7 @@ app.post('/api/portfolio', upload.single('image'), async (req, res) => {
 })
 
 // Delete Portfolio
-app.delete('/api/portfolio/:id', async (req, res) => {
+app.delete('/api/portfolio/:id', authenticateToken, async (req, res) => {
   const { id } = req.params
   try {
     await db.query('DELETE FROM portfolio WHERE id = ?', [id])
@@ -116,7 +147,7 @@ app.delete('/api/portfolio/:id', async (req, res) => {
 })
 
 // Update Portfolio
-app.put('/api/portfolio/:id', upload.single('image'), async (req, res) => {
+app.put('/api/portfolio/:id', authenticateToken, upload.single('image'), async (req, res) => {
   const { id } = req.params
   const { title, category, description, project_url } = req.body
   
@@ -199,7 +230,7 @@ app.get('/api/pricing', async (req, res) => {
 })
 
 // Add Pricing Package
-app.post('/api/pricing', async (req, res) => {
+app.post('/api/pricing', authenticateToken, async (req, res) => {
   const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type, includes_hosting } = req.body
   const type = item_type || 'web'
   try {
@@ -215,7 +246,7 @@ app.post('/api/pricing', async (req, res) => {
 })
 
 // Update Pricing Package
-app.put('/api/pricing/:id', async (req, res) => {
+app.put('/api/pricing/:id', authenticateToken, async (req, res) => {
     const { id } = req.params
     const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type, includes_hosting } = req.body
     try {
@@ -231,7 +262,7 @@ app.put('/api/pricing/:id', async (req, res) => {
   })
 
 // Delete Pricing Package
-app.delete('/api/pricing/:id', async (req, res) => {
+app.delete('/api/pricing/:id', authenticateToken, async (req, res) => {
   const { id } = req.params
   try {
     await db.query('DELETE FROM pricing_packages WHERE id = ?', [id])
