@@ -157,7 +157,7 @@ export default function AdminDashboard() {
         setIsPricingModalOpen(false)
         setCurrentPricing({
           id: null, name: '', category: '', price_min: '', price_max: '',
-          description: '', features: [''], is_best_seller: false, whatsapp_message: ''
+          description: '', features: [''], is_best_seller: false, whatsapp_message: '', includes_hosting: false
         })
         fetchPricing()
       } else {
@@ -390,7 +390,7 @@ export default function AdminDashboard() {
                 onClick={() => {
                   setCurrentPricing({
                     id: null, name: '', category: '', price_min: '', price_max: '',
-                    description: '', features: [''], is_best_seller: false, whatsapp_message: ''
+                    description: '', features: [''], is_best_seller: false, whatsapp_message: '', includes_hosting: false
                   })
                   setIsPricingModalOpen(true)
                 }}
@@ -408,7 +408,7 @@ export default function AdminDashboard() {
                   <button onClick={() => {
                         setCurrentPricing({
                           id: null, name: '', category: '', price_min: '', price_max: '',
-                          description: '', features: [''], is_best_seller: false, whatsapp_message: ''
+                          description: '', features: [''], is_best_seller: false, whatsapp_message: '', includes_hosting: false
                         })
                         setIsPricingModalOpen(true)
                   }} className="text-primary-600 font-medium hover:underline">Tambah Sekarang</button>
@@ -610,7 +610,7 @@ export default function AdminDashboard() {
                           onChange={e => setCurrentPricing({...currentPricing, category: e.target.value})}
                         />
                       </div>
-                      <div className="flex items-center pt-6">
+                      <div className="flex flex-col gap-3 pt-4 pl-2">
                          <label className="flex items-center cursor-pointer gap-2">
                             <input 
                               type="checkbox" 
@@ -619,6 +619,15 @@ export default function AdminDashboard() {
                               onChange={e => setCurrentPricing({...currentPricing, is_best_seller: e.target.checked})}
                             />
                             <span className="text-sm font-medium text-gray-700">Best Seller?</span>
+                         </label>
+                         <label className="flex items-center cursor-pointer gap-2">
+                            <input 
+                              type="checkbox" 
+                              className="w-5 h-5 text-indigo-600 rounded focus:ring-indigo-500"
+                              checked={!!currentPricing.includes_hosting}
+                              onChange={e => setCurrentPricing({...currentPricing, includes_hosting: e.target.checked})}
+                            />
+                            <span className="text-sm font-medium text-gray-700">Termasuk Hosting?</span>
                          </label>
                       </div>
                     </div>

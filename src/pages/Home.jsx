@@ -187,20 +187,20 @@ function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="relative pt-32 pb-24 md:pt-40 md:pb-32 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-primary-50/30">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, rgb(99, 102, 241) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
+      <section id="home" className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+        {/* Modern Mesh Gradient Background */}
+        <div className="absolute inset-0 bg-white">
+          <div className="absolute top-[-10%] right-[0%] w-[500px] h-[500px] rounded-full bg-purple-100/50 blur-3xl opacity-60 mix-blend-multiply animate-blob" />
+          <div className="absolute top-[0%] left-[-10%] w-[600px] h-[600px] rounded-full bg-indigo-100/50 blur-3xl opacity-60 mix-blend-multiply animate-blob animation-delay-2000" />
+          <div className="absolute bottom-[-10%] left-[20%] w-[500px] h-[500px] rounded-full bg-blue-100/50 blur-3xl opacity-60 mix-blend-multiply animate-blob animation-delay-4000" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] items-center">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_1fr] items-center">
             {/* Left: Text */}
-            <div className="md:pr-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 text-primary-700 text-xs font-bold uppercase tracking-wide mb-6 border border-blue-100">
+            <div className="md:pr-8 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 text-primary-700 text-xs font-bold uppercase tracking-wide mb-6 border border-blue-100 mx-auto md:mx-0">
                 <span className="w-2 h-2 bg-primary-600 rounded-full animate-pulse" />
                 Specialis WebApps
               </div>
@@ -209,27 +209,27 @@ function Home() {
                 <span className="text-gray-900">SISTEM WEB</span> <br/>
                 <span className="text-primary-600">PROFESIONAL</span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl leading-relaxed font-medium">
+              <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-xl leading-relaxed font-medium mx-auto md:mx-0">
                 Responsive & <span className="text-gray-900 font-bold border-b-2 border-primary-200">Terintegrasi Admin Panel</span>.
                 <br className="hidden md:block"/> Siap digunakan sesuai kebutuhan Anda.
               </p>
               
-              <div className="space-y-3 mb-10">
+              <div className="space-y-4 mb-10 text-left max-w-md mx-auto md:mx-0">
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded bg-primary-600 flex items-center justify-center text-white text-xs">✓</div>
-                  <span className="text-gray-700 font-medium">Custom sesuai kebutuhan</span>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm shadow-sm shadow-primary-200">✓</div>
+                  <span className="text-gray-700 font-medium text-lg">Custom sesuai kebutuhan</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded bg-primary-600 flex items-center justify-center text-white text-xs">✓</div>
-                  <span className="text-gray-700 font-medium">Admin Panel & Role User</span>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm shadow-sm shadow-primary-200">✓</div>
+                  <span className="text-gray-700 font-medium text-lg">Admin Panel & Role User</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded bg-primary-600 flex items-center justify-center text-white text-xs">✓</div>
-                  <span className="text-gray-700 font-medium">Responsive (Mobile & Desktop)</span>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm shadow-sm shadow-primary-200">✓</div>
+                  <span className="text-gray-700 font-medium text-lg">Responsive (Mobile & Desktop)</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="flex-shrink-0 w-6 h-6 rounded bg-primary-600 flex items-center justify-center text-white text-xs">✓</div>
-                  <span className="text-gray-700 font-medium">Aman & Mudah Dikembangkan</span>
+                  <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white text-sm shadow-sm shadow-primary-200">✓</div>
+                  <span className="text-gray-700 font-medium text-lg">Aman & Mudah Dikembangkan</span>
                 </div>
               </div>
 
@@ -521,6 +521,12 @@ function Home() {
                   </p>
                 </div>
                 <div className="mt-4 mb-6">
+                  {!!pkg.includes_hosting && (
+                     <div className="mb-3 bg-green-50 text-green-700 text-xs font-bold px-3 py-2 rounded-lg flex items-center gap-2 border border-green-100 animate-pulse">
+                        <span className="text-base">☁️</span> 
+                        <span>GRATIS HOSTING & DOMAIN</span>
+                     </div>
+                  )}
                   <span className="text-3xl font-bold text-primary-600">
                     Rp{formatPrice(pkg.price_min)}
                   </span>
@@ -559,6 +565,38 @@ function Home() {
               </div>
             )}
           </div>
+        </div>
+      </section>
+
+      {/* Hosting Service Promo */}
+      <section className="py-16 bg-blue-900 relative overflow-hidden text-white">
+        {/* Abstract Background */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500 rounded-full mix-blend-overlay filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+           <div className="inline-block px-4 py-1.5 rounded-full bg-blue-800 text-blue-200 font-semibold text-xs mb-4 border border-blue-700">
+             Add-on Service
+           </div>
+           <h2 className="text-2xl md:text-3xl font-bold mb-4">
+             Belum Punya Domain & Hosting?
+           </h2>
+           <p className="text-blue-100 max-w-2xl mx-auto mb-8 text-lg leading-relaxed">
+             Tenang, kami bantu urus semuanya! Mulai dari pendaftaran nama domain (<b>.com, .id, .xyz</b>) 
+             sampai setup server yang cepat dan aman. Terima beres, website langsung online.
+           </p>
+           
+           <div className="flex flex-wrap justify-center gap-4">
+             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10">
+               <span>🌐</span> <span>Bantu beli domain</span>
+             </div>
+             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10">
+               <span>☁️</span> <span>Setup cPanel / VPS</span>
+             </div>
+             <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm border border-white/10">
+               <span>🔒</span> <span>Gratis SSL (HTTPS)</span>
+             </div>
+           </div>
         </div>
       </section>
 
@@ -663,108 +701,86 @@ function Home() {
         </div>
       </section>
 
-      {/* Features / What You Get Section */}
-      <section className="py-20 bg-gray-50">
+      {/* How It Works Section (Replaces Features & About) */}
+      <section id="about" className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center mb-14">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Semua yang Kamu Dapat dalam Paket
-            </h2>
-            <p className="text-base md:text-lg text-gray-600">
-              Bukan cuma file website, tapi juga hal-hal pendukung supaya kamu lebih tenang saat presentasi.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              'Struktur folder & file yang rapi',
-              'Responsive di laptop & HP',
-              'Penamaan komponen / class jelas',
-              'Catatan singkat cara run project',
-              'Sedikit “script ngomong” saat presentasi',
-              'Bantuan kecil kalau ada error mendadak*',
-            ].map((feature, index) => (
-              <div
-                key={index}
-                className="p-5 rounded-2xl bg-white border border-gray-100 shadow-sm text-sm text-gray-700"
-              >
-                {feature}
-              </div>
-            ))}
-          </div>
-
-          <p className="text-xs text-gray-500 mt-4 text-center">
-            *Selama masih dalam scope project & masa support yang disepakati.
-          </p>
-        </div>
-      </section>
-
-      {/* About / Approach Section */}
-      <section id="about" className="py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Cara Kerja & Pendekatan Kami
-              </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-                Dibuat supaya kamu tidak hanya “punya website”, tapi paham apa yang kamu bawa saat presentasi.
-              </p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-              <div className="space-y-4 text-gray-600 text-base leading-relaxed">
-                <p>
-                  Kami terbiasa menangani kebutuhan mulai dari tugas kuliah, website organisasi, 
-                  sampai personal branding untuk profesional muda. Fokusnya: struktur konten jelas, 
-                  layout rapi, dan flow yang enak diikuti saat dijelaskan.
-                </p>
-                <p>
-                  Proses selalu dimulai dari pemetaan kebutuhan, contoh referensi yang kamu suka, 
-                  dan batasan dari dosen/klien. Dari situ baru kami turunkan ke struktur halaman, 
-                  komponen, dan akhirnya implementasi.
-                </p>
-              </div>
-              <div className="space-y-3 text-sm text-gray-700">
-                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-                  <p className="font-semibold text-gray-900 mb-1">01. Brief & Requirement</p>
-                  <p>Mengumpulkan informasi tugas/brief, deadline, dan contoh referensi.</p>
+           <div className="text-center mb-16">
+             <div className="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-primary-600 font-semibold text-sm mb-4">
+               Workflow
+             </div>
+             <h2 className="text-3xl md:text-4xl font-bold text-primary-800 mb-4">
+               Cara Kerja Simpel
+             </h2>
+             <p className="text-lg text-gray-500 max-w-2xl mx-auto">
+               Gak perlu ribet. Cukup 4 langkah mudah sampai website kamu siap digunakan.
+             </p>
+           </div>
+           
+           <div className="relative">
+             {/* Connection Line (Desktop) */}
+             <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-blue-200 via-purple-200 to-orange-200 border-t-2 border-dashed border-gray-300" />
+             
+             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+              {/* Step 1 */}
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-blue-50 transition-all duration-300 hover:-translate-y-2">
+                <div className="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform shadow-sm">
+                   💬
                 </div>
-                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-                  <p className="font-semibold text-gray-900 mb-1">02. Struktur & Wireframe</p>
-                  <p>Menyusun urutan section dan tampilan kasar sebelum full styling.</p>
-                </div>
-                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-                  <p className="font-semibold text-gray-900 mb-1">03. Implementasi & Review</p>
-                  <p>Development dengan Tailwind + review singkat sebelum finalisasi.</p>
-                </div>
-                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
-                  <p className="font-semibold text-gray-900 mb-1">04. Handover & Support</p>
-                  <p>Penyerahan file + catatan singkat dan support kecil menjelang presentasi.</p>
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-primary-700 mb-2 group-hover:text-blue-600 transition-colors">1. Konsultasi</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">Diskusi santai via WhatsApp. Ceritakan ide & kebutuhanmu.</p>
                 </div>
               </div>
-            </div>
-              
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[
-                { label: 'Client Repeat Order', value: '60%+', desc: 'Banyak yang lanjut ke project berikutnya.' },
-                { label: 'On-time Delivery', value: '95%+', desc: 'Menjaga komitmen terhadap deadline.' },
-                { label: 'Scope Jelas', value: '1 Project = 1 Fokus', desc: 'Menghindari hal-hal di luar brief awal.' },
-              ].map((item, index) => (
-                <div key={index} className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
-                  <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase mb-2">
-                    {item.label}
-                  </p>
-                  <p className="text-xl font-semibold text-gray-900 mb-1">
-                    {item.value}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {item.desc}
-                  </p>
+
+              {/* Step 2 */}
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-green-50 transition-all duration-300 hover:-translate-y-2">
+                <div className="w-16 h-16 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform shadow-sm">
+                   🤝
                 </div>
-              ))}
-            </div>
-          </div>
+                <div className="text-center">
+                  <h3 className="text-lg font-bold text-primary-700 mb-2 group-hover:text-green-600 transition-colors">2. Deal Harga</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">Pilih paket yang pas dikantong. Transparan, tanpa hidden fees.</p>
+                </div>
+              </div>
+
+              {/* Step 3 */}
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-purple-50 transition-all duration-300 hover:-translate-y-2">
+                <div className="w-16 h-16 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform shadow-sm">
+                   ⚡
+                </div>
+                <div className="text-center">
+                   <h3 className="text-lg font-bold text-primary-700 mb-2 group-hover:text-purple-600 transition-colors">3. Pengerjaan</h3>
+                   <p className="text-sm text-gray-500 leading-relaxed">Duduk manis, kami coding websitemu sampai rapi & kencang.</p>
+                </div>
+              </div>
+
+              {/* Step 4 */}
+              <div className="group bg-white p-6 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:shadow-orange-50 transition-all duration-300 hover:-translate-y-2">
+                 <div className="w-16 h-16 bg-orange-50 text-orange-600 rounded-2xl flex items-center justify-center text-3xl mb-6 mx-auto group-hover:scale-110 transition-transform shadow-sm">
+                   ✨
+                 </div>
+                 <div className="text-center">
+                   <h3 className="text-lg font-bold text-primary-700 mb-2 group-hover:text-orange-600 transition-colors">4. Selesai!</h3>
+                   <p className="text-sm text-gray-500 leading-relaxed">Website live, file diserahkan, siap dipamerkan ke dunia.</p>
+                 </div>
+              </div>
+             </div>
+           </div>
+
+           {/* Stats Strip */}
+           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 bg-gray-50 rounded-3xl p-8 border border-gray-100">
+               {[
+                 { val: '3+', label: 'Tahun Pengalaman' },
+                 { val: '50+', label: 'Project Selesai' },
+                 { val: '4.9/5', label: 'Rating Client' },
+                 { val: '24/7', label: 'Support Chat' },
+               ].map((stat, i) => (
+                 <div key={i} className="text-center">
+                    <div className="text-2xl md:text-3xl font-black text-primary-700 mb-1">{stat.val}</div>
+                    <div className="text-xs font-medium text-gray-500 uppercase tracking-wider">{stat.label}</div>
+                 </div>
+               ))}
+           </div>
         </div>
       </section>
 

@@ -200,14 +200,14 @@ app.get('/api/pricing', async (req, res) => {
 
 // Add Pricing Package
 app.post('/api/pricing', async (req, res) => {
-  const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type } = req.body
+  const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type, includes_hosting } = req.body
   const type = item_type || 'web'
   try {
     await db.query(`
       INSERT INTO pricing_packages 
-      (name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
-      [name, category, price_min, price_max, description, JSON.stringify(features), is_best_seller, whatsapp_message, type])
+      (name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type, includes_hosting) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, 
+      [name, category, price_min, price_max, description, JSON.stringify(features), is_best_seller, whatsapp_message, type, includes_hosting])
     res.json({ success: true })
   } catch (err) {
     res.status(500).json({ error: err.message })
@@ -217,13 +217,13 @@ app.post('/api/pricing', async (req, res) => {
 // Update Pricing Package
 app.put('/api/pricing/:id', async (req, res) => {
     const { id } = req.params
-    const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type } = req.body
+    const { name, category, price_min, price_max, description, features, is_best_seller, whatsapp_message, item_type, includes_hosting } = req.body
     try {
       await db.query(`
         UPDATE pricing_packages 
-        SET name=?, category=?, price_min=?, price_max=?, description=?, features=?, is_best_seller=?, whatsapp_message=?, item_type=?
+        SET name=?, category=?, price_min=?, price_max=?, description=?, features=?, is_best_seller=?, whatsapp_message=?, item_type=?, includes_hosting=?
         WHERE id=?`, 
-        [name, category, price_min, price_max, description, JSON.stringify(features), is_best_seller, whatsapp_message, item_type, id])
+        [name, category, price_min, price_max, description, JSON.stringify(features), is_best_seller, whatsapp_message, item_type, includes_hosting, id])
       res.json({ success: true })
     } catch (err) {
       res.status(500).json({ error: err.message })
