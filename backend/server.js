@@ -4,6 +4,7 @@ import cors from 'cors'
 import multer from 'multer'
 import path from 'path'
 import fs from 'fs'
+import bcrypt from 'bcryptjs'
 import { fileURLToPath } from 'url'
 import { db } from './db.js'
 
@@ -33,12 +34,34 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 // Login Endpoint
+// Login Endpoint
 app.post('/api/login', async (req, res) => {
   const { email, password } = req.body
   try {
-    const [rows] = await db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password])
-    if (rows.length > 0) {
-      res.json({ success: true, user: rows[0] })
+    // 1. Get user by email
+    const [rows] = await db.query('SELECT * FROM users WHERE email = ?', [email])
+    
+    if (rows.length === 0) {
+      return res.status(401).json({ success: false, message: 'Invalid credentials' })
+    }
+
+    const user = rows[0]
+
+    // 2. Compare password (bcrypt)
+    let isMatch = await bcrypt.compare(password, user.password)
+    
+    // 3. Fallback: Check if it's currently Plain Text (Legacy)
+    if (!isMatch && password === user.password) {
+        // It matches as plain text! Upgrade to Hash immediately
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(password, salt)
+        
+        await db.query('UPDATE users SET password = ? WHERE id = ?', [hashedPassword, user.id])
+        isMatch = true
+    }
+
+    if (isMatch) {
+      res.json({ success: true, user: user })
     } else {
       res.status(401).json({ success: false, message: 'Invalid credentials' })
     }

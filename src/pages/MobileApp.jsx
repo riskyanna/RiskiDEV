@@ -48,9 +48,7 @@ export default function MobileApp() {
   }
 
   const formatPrice = (price) => {
-    if (price >= 1000000) return (price / 1000000).toFixed(1) + ' Jt'
-    if (price >= 1000) return (price / 1000).toFixed(0) + ' Ribu'
-    return price
+    return Number(price).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   }
 
   return (
@@ -179,39 +177,124 @@ export default function MobileApp() {
                     </div>
                 </div>
 
-                {/* Hero 3D Mockup Area */}
-                <div className="relative lg:h-[600px] flex items-center justify-center perspective-1000 animate-fadeInRight">
-                    <div className="relative w-72 h-[580px] bg-gray-900 rounded-[3rem] border-8 border-gray-900 shadow-2xl z-10 transform rotate-y-12 hover:rotate-y-0 transition-transform duration-700">
-                        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-6 w-32 bg-gray-900 rounded-b-xl z-20"></div>
-                        <div className="w-full h-full bg-white rounded-[2.5rem] overflow-hidden relative">
-                           {/* Screen Content */}
-                           <div className="bg-gradient-to-br from-indigo-600 to-purple-700 h-full w-full overflow-hidden flex flex-col items-center pt-20 px-6">
-                               <div className="w-20 h-20 bg-white/20 backdrop-blur-lg rounded-3xl mb-8 flex items-center justify-center text-4xl shadow-lg">🚀</div>
-                               <h3 className="text-2xl font-bold text-white mb-2 text-center">App Launch</h3>
-                               <p className="text-indigo-200 text-sm text-center mb-10">Your Idea, Realized.</p>
-                               
-                               <div className="w-full space-y-4">
-                                  <div className="h-24 bg-white/10 backdrop-blur-md rounded-2xl w-full border border-white/10 p-4 flex items-center gap-4">
-                                     <div className="w-12 h-12 bg-white/20 rounded-xl"></div>
-                                     <div className="flex-1 space-y-2">
-                                        <div className="h-3 bg-white/30 rounded w-2/3"></div>
-                                        <div className="h-3 bg-white/10 rounded w-1/2"></div>
+                {/* Hero Realistic Mockup Area */}
+                <div className="relative lg:h-[600px] flex items-center justify-center perspective-1000 animate-fadeInRight mt-10 lg:mt-0">
+                    
+                    {/* Laptop Mockup (Behind) */}
+                    <div className="relative w-[600px] hidden md:block transform -translate-x-12 translate-y-4 z-0 group">
+                        {/* Lid */}
+                        <div className="bg-[#0d0d0d] rounded-t-2xl p-3 pb-8 relative border-4 border-[#1a1a1a] shadow-2xl transition-transform duration-500 ease-out group-hover:rotate-x-2 perspective-1000">
+                             {/* Camera & Bezel Details */}
+                             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-[#1a1a1a] rounded-full z-20 flex items-center justify-center">
+                                <div className="w-0.5 h-0.5 bg-[#333] rounded-full"></div>
+                                {/* IR Blaster glimmer */}
+                                <div className="absolute -right-2 w-0.5 h-0.5 bg-[#222] rounded-full opacity-50"></div>
+                             </div>
+                             
+                             {/* Screen */}
+                             <div className="bg-black rounded-lg overflow-hidden h-[340px] w-full relative border border-[#000]">
+                                 {/* Fake Browser UI (Dark Mode) */}
+                                 <div className="bg-[#1e1e1e] h-7 flex items-center gap-2 px-4 border-b border-[#333]">
+                                     <div className="flex gap-1.5">
+                                         <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+                                         <div className="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+                                         <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
                                      </div>
-                                  </div>
-                                  <div className="h-24 bg-white/10 backdrop-blur-md rounded-2xl w-full border border-white/10 p-4 flex items-center gap-4">
-                                     <div className="w-12 h-12 bg-white/20 rounded-xl"></div>
-                                     <div className="flex-1 space-y-2">
-                                        <div className="h-3 bg-white/30 rounded w-2/3"></div>
-                                        <div className="h-3 bg-white/10 rounded w-1/2"></div>
+                                     <div className="flex-1 bg-[#2a2a2a] h-5 rounded-md mx-4 flex items-center px-3">
+                                         <div className="text-[8px] text-gray-500">cendekia.academy</div>
                                      </div>
-                                  </div>
-                               </div>
-                           </div>
+                                 </div>
+                                 
+                                 {/* ACTUAL IAMGE CONTENT */}
+                                 <div className="relative h-full w-full bg-white overflow-hidden scrollbar-hide">
+                                     <img 
+                                        src="/hero-preview.png" 
+                                        alt="Website Preview" 
+                                        className="w-full h-auto object-cover object-top"
+                                     />
+                                     {/* Screen Gloss/Reflection Overlay */}
+                                     <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-5 pointer-events-none"></div>
+                                     <div className="absolute top-0 right-0 w-2/3 h-full bg-gradient-to-l from-white/5 to-transparent skew-x-12 pointer-events-none"></div>
+                                 </div>
+                             </div>
+                        </div>
+                        {/* Base */}
+                        <div className="bg-[#d2d2d7] h-4 rounded-b-xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] relative border-t border-[#888]">
+                             {/* Trackpad Notch */}
+                             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-[#a1a1a6] rounded-b-md"></div>
                         </div>
                     </div>
-                    {/* Background Accents */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+                    {/* Phone Mockup (Front) */}
+                    <div className="relative w-[280px] h-[550px] bg-black rounded-[3.5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.7)] z-10 transform rotate-y-12 translate-x-12 border-[12px] border-[#1a1a1a] ring-1 ring-white/10">
+                        {/* Buttons (Side) */}
+                        <div className="absolute top-32 -left-4 w-1 h-10 bg-[#1a1a1a] rounded-l-md border-l border-[#333]"></div>
+                        <div className="absolute top-48 -left-4 w-1 h-16 bg-[#1a1a1a] rounded-l-md border-l border-[#333]"></div>
+                        <div className="absolute top-40 -right-4 w-1 h-20 bg-[#1a1a1a] rounded-r-md border-r border-[#333]"></div>
+
+                        {/* Dynamic Island / Notch */}
+                        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 h-8 w-28 bg-black rounded-full z-30 flex justify-center items-center gap-2 shadow-sm">
+                             <div className="w-16 h-4 bg-[#111] rounded-full flex items-center justify-end px-2">
+                                <div className="w-2 h-2 rounded-full bg-[#222]"></div>
+                             </div>
+                        </div>
+                        
+                        {/* Screen Content */}
+                        <div className="w-full h-full bg-white rounded-[2.8rem] overflow-hidden relative">
+                           {/* Mobile App UI */}
+                           <div className="bg-white h-full w-full overflow-hidden flex flex-col relative">
+                               {/* Status Bar */}
+                               <div className="h-12 w-full bg-transparent absolute top-0 z-20 flex justify-between px-6 pt-3 text-[10px] font-bold text-white">
+                                   <span>9:41</span>
+                                   <div className="flex gap-1">
+                                       <span>📶</span>
+                                       <span>🔋</span>
+                                   </div>
+                               </div>
+
+                               {/* Header Mockup */}
+                               <div className="bg-gradient-to-br from-orange-400 to-amber-600 h-44 rounded-b-[2.5rem] p-6 pt-16 text-white shadow-xl relative overflow-hidden">
+                                   <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl"></div>
+                                   <div className="flex justify-between items-center mb-6">
+                                      <div className="w-10 h-10 bg-white/20 rounded-xl backdrop-blur-md flex items-center justify-center cursor-pointer hover:bg-white/30 transition-colors">☰</div>
+                                      <div className="w-10 h-10 rounded-full bg-white/90 border-2 border-white/50 shadow-inner bg-[url('https://api.dicebear.com/7.x/avataaars/svg?seed=Felix')] bg-cover"></div>
+                                   </div>
+                                   <h4 className="font-bold text-2xl leading-none">Hello,<br/><span className="opacity-90 font-normal">Siswa Cendekia!</span></h4>
+                               </div>
+
+                               {/* App Content */}
+                               <div className="p-6 space-y-6">
+                                   <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
+                                       <div className="w-24 h-28 bg-gradient-to-b from-indigo-50 to-white border border-indigo-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+                                           <div className="w-10 h-10 bg-indigo-100 rounded-full text-indigo-600 flex items-center justify-center font-bold text-xl">📚</div>
+                                           <span className="text-xs font-bold text-gray-600">Jadwal</span>
+                                       </div>
+                                       <div className="w-24 h-28 bg-gradient-to-b from-green-50 to-white border border-green-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+                                           <div className="w-10 h-10 bg-green-100 rounded-full text-green-600 flex items-center justify-center font-bold text-xl">✅</div>
+                                           <span className="text-xs font-bold text-gray-600">Hadir</span>
+                                       </div>
+                                       <div className="w-24 h-28 bg-gradient-to-b from-orange-50 to-white border border-orange-100 rounded-2xl flex-shrink-0 flex flex-col items-center justify-center gap-3 shadow-sm hover:shadow-md transition-shadow">
+                                           <div className="w-10 h-10 bg-orange-100 rounded-full text-orange-600 flex items-center justify-center font-bold text-xl">🏆</div>
+                                           <span className="text-xs font-bold text-gray-600">Nilai</span>
+                                       </div>
+                                   </div>
+
+                                   {/* List Card */}
+                                   <div className="bg-white border border-gray-100 rounded-2xl p-4 shadow-sm flex gap-4 items-center">
+                                       <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl">M</div>
+                                       <div className="flex-1">
+                                           <div className="text-xs text-blue-600 font-bold uppercase tracking-wider mb-0.5">Sedang Berlangsung</div>
+                                           <div className="font-bold text-gray-900 text-lg">Matematika</div>
+                                           <div className="text-xs text-gray-400">R. 102 • Pak Budi</div>
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                           
+                           {/* Screen Reflection */}
+                           <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white to-transparent opacity-10 pointer-events-none rounded-[2.8rem]"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
          </div>

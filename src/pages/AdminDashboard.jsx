@@ -428,11 +428,11 @@ export default function AdminDashboard() {
                           
                           <div className="mb-4">
                             <span className="text-2xl font-bold text-gray-900">
-                              Rp{pkg.price_min.toLocaleString('id-ID')}
+                              Rp{Number(pkg.price_min).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                             </span>
                             {pkg.price_max && (
                               <span className="text-sm text-gray-500 ml-1">
-                                - Rp{pkg.price_max.toLocaleString('id-ID')}
+                                - Rp{Number(pkg.price_max).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                               </span>
                             )}
                           </div>

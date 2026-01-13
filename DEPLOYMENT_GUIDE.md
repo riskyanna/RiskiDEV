@@ -57,6 +57,18 @@ Kamu perlu memindahkan table dari lokal ke Cloud.
     - `DB_SSL` = `true`
 6.  Klik **Deploy**.
 
+## FAQ (Pertanyaan Umum)
+
+### Q: Bisakah saya pakai Netlify untuk Frontend?
+
+**Bisa, tapi tidak disarankan**.
+Jika Anda pakai Netlify untuk Frontend, Anda harus mencari hosting lain untuk Backend (seperti Render.com). Ini akan membuat setup lebih rumit karena backend dan frontend beda alamat (rawan error CORS).
+**Solusi:** Gunakan Vercel sesuai panduan ini. Vercel bisa menampung Frontend (React) DAN Backend (Express) Anda sekaligus dalam satu tempat gratis.
+
+### Q: Kenapa Backend perlu hosting khusus?
+
+Netlify (biasa) hanya untuk file statis (HTML/CSS/JS). Backend Anda punya logika (Node.js) yang butuh server berjalan. Konfigurasi Vercel yang saya buat mengubah backend Anda menjadi "Serverless Function" agar bisa jalan tanpa sewa VPS mahal.
+
 ## Penjelasan Teknis
 
 - Saya sudah menambahkan file `vercel.json` dan `api/index.js` agar backend Express kamu bisa jalan di Vercel sebagai "Serverless Function".

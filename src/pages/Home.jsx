@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
 import fastworkLogo from '../assets/logo fastwork.webp'
 
@@ -44,16 +43,9 @@ function Home() {
     }
   }
 
-  // Format harga jadi lebih ringkas (1.200.000 -> 1,2jt)
+  // Format harga standard Indonesia (150000 -> 150.000,00)
   const formatPrice = (price) => {
-    if (price >= 1000000) {
-      const juta = price / 1000000
-      return `${juta % 1 === 0 ? juta : juta.toFixed(1).replace('.', ',')}jt`
-    } else if (price >= 1000) {
-      const ribu = price / 1000
-      return `${ribu % 1 === 0 ? ribu : ribu.toFixed(0)}rb`
-    }
-    return price.toLocaleString('id-ID')
+    return Number(price).toLocaleString('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
   }
 
   const handleOrderClick = async (type) => {
@@ -336,44 +328,7 @@ function Home() {
             </div>
           </div>
         </div>
-
       </section>
-
-      {/* Mobile App Promo Banner - Upgraded */}
-      <div className="relative py-8 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 overflow-hidden">
-         {/* Abstract Shapes */}
-         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-purple-500 rounded-full blur-3xl mix-blend-screen animate-blob"></div>
-            <div className="absolute top-10 right-10 w-40 h-40 bg-pink-500 rounded-full blur-3xl mix-blend-screen animate-blob animation-delay-2000"></div>
-         </div>
-         
-         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-1">
-               <div className="flex items-center gap-4 text-center md:text-left">
-                  <div className="hidden md:flex w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 items-center justify-center text-3xl shadow-lg">
-                    📱
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-white mb-1">Butuh Aplikasi <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Android & iOS?</span></h3>
-                    <p className="text-indigo-200 text-sm">Tersedia paket khusus Mahasiswa & UMKM. Siap publish ke Play Store!</p>
-                  </div>
-               </div>
-               
-               <Link 
-                 to="/mobile-app"
-                 className="group relative inline-flex items-center gap-2 bg-white text-indigo-900 px-6 py-3 rounded-xl font-bold hover:bg-indigo-50 transition-all duration-300 transform hover:scale-105 shadow-xl shadow-purple-900/20"
-               >
-                 <span>Lihat Layanan App</span>
-                 <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                 </svg>
-                 
-                 {/* Shine Effect */}
-                 <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white opacity-40 group-hover:animate-shine" />
-               </Link>
-            </div>
-         </div>
-      </div>
 
       {/* Services Section */}
       <section id="services" className="py-24 bg-slate-50 relative overflow-hidden">
@@ -682,97 +637,65 @@ function Home() {
       </section>
 
       {/* About / Approach Section */}
-      <section id="about" className="py-24 bg-white relative">
+      <section id="about" className="py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="">
-            <div className="text-center mb-20">
-              <span className="inline-block py-1 px-3 rounded-full bg-blue-50 text-primary-600 text-xs font-bold tracking-widest uppercase mb-4 border border-blue-100">
-                Workflow Professional
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 tracking-tight">
-                Cara Kerja & <span className="text-primary-600">Pendekatan Kami</span>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Cara Kerja & Pendekatan Kami
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-                Kami membangun website dengan struktur yang jelas, bukan sekadar template jadi.
-                Setiap tahap dirancang agar hasil akhirnya rapi, fungsional, dan mudah dipresentasikan.
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Dibuat supaya kamu tidak hanya “punya website”, tapi paham apa yang kamu bawa saat presentasi.
               </p>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mb-20">
-              {/* Left Column: Descriptive Text */}
-              <div className="space-y-6">
-                <div className="bg-gradient-to-br from-blue-50 to-white p-8 rounded-3xl border border-blue-100/50">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
-                    Lebih dari Sekadar Coding
-                  </h3>
-                  <div className="space-y-4 text-gray-600 leading-relaxed">
-                    <p>
-                      Kami terbiasa menangani kebutuhan mulai dari <span className="font-semibold text-primary-700">tugas kuliah</span>, 
-                      website organisasi, sampai <span className="font-semibold text-primary-700">personal branding</span>. 
-                      Fokus kami adalah menciptakan struktur konten yang jelas dan layout yang enak dilihat.
-                    </p>
-                    <p>
-                      Proses dimulai dari pemetaan kebutuhan dan referensi visual yang kamu suka. 
-                      Dari situ kami turunkan ke struktur halaman dan komponen, memastikan setiap baris kode 
-                      berfungsi optimal sesuai kebutuhanmu.
-                    </p>
-                  </div>
-                  <div className="mt-6 flex items-center gap-4">
-                    <div className="flex -space-x-3">
-                      <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-200"></div>
-                      <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-300"></div>
-                      <div className="w-10 h-10 rounded-full border-2 border-white bg-gray-400"></div>
-                    </div>
-                    <p className="text-sm font-medium text-gray-500">
-                      Dipercaya oleh 50+ Klien
-                    </p>
-                  </div>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+              <div className="space-y-4 text-gray-600 text-base leading-relaxed">
+                <p>
+                  Kami terbiasa menangani kebutuhan mulai dari tugas kuliah, website organisasi, 
+                  sampai personal branding untuk profesional muda. Fokusnya: struktur konten jelas, 
+                  layout rapi, dan flow yang enak diikuti saat dijelaskan.
+                </p>
+                <p>
+                  Proses selalu dimulai dari pemetaan kebutuhan, contoh referensi yang kamu suka, 
+                  dan batasan dari dosen/klien. Dari situ baru kami turunkan ke struktur halaman, 
+                  komponen, dan akhirnya implementasi.
+                </p>
               </div>
-
-              {/* Right Column: Process Steps */}
-              <div className="space-y-0 relative">
-                 {/* Vertical Line Line */}
-                 <div className="absolute left-[19px] top-8 bottom-8 w-0.5 bg-gray-100 hidden md:block"></div>
-
-                 {[
-                   { step: '01', title: 'Brief & Requirement', desc: 'Diskusi santai untuk memahami kebutuhan, deadline, dan referensi desain yang diinginkan.' },
-                   { step: '02', title: 'Struktur & Wireframe', desc: 'Menyusun kerangka halaman dan alur website agar sesuai dengan tujuan presentasi.' },
-                   { step: '03', title: 'Development', desc: 'Implementasi kode menggunakan teknologi modern (React/Tailwind) dengan penulisan rapi.' },
-                   { step: '04', title: 'Handover & Support', desc: 'Penyerahan file project, panduan singkat, dan garansi revisi jika ada kendala.' }
-                 ].map((item, index) => (
-                   <div key={index} className="relative flex gap-6 group hover:bg-gray-50 p-4 rounded-2xl transition-colors">
-                      <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-white border-2 border-primary-100 text-primary-600 font-bold flex items-center justify-center shadow-sm group-hover:border-primary-500 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300">
-                        {item.step}
-                      </div>
-                      <div className="pt-1">
-                        <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-primary-700 transition-colors">
-                          {item.title}
-                        </h4>
-                        <p className="text-sm text-gray-600 leading-relaxed">
-                          {item.desc}
-                        </p>
-                      </div>
-                   </div>
-                 ))}
+              <div className="space-y-3 text-sm text-gray-700">
+                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
+                  <p className="font-semibold text-gray-900 mb-1">01. Brief & Requirement</p>
+                  <p>Mengumpulkan informasi tugas/brief, deadline, dan contoh referensi.</p>
+                </div>
+                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
+                  <p className="font-semibold text-gray-900 mb-1">02. Struktur & Wireframe</p>
+                  <p>Menyusun urutan section dan tampilan kasar sebelum full styling.</p>
+                </div>
+                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
+                  <p className="font-semibold text-gray-900 mb-1">03. Implementasi & Review</p>
+                  <p>Development dengan Tailwind + review singkat sebelum finalisasi.</p>
+                </div>
+                <div className="p-4 rounded-xl border border-gray-200 bg-gray-50">
+                  <p className="font-semibold text-gray-900 mb-1">04. Handover & Support</p>
+                  <p>Penyerahan file + catatan singkat dan support kecil menjelang presentasi.</p>
+                </div>
               </div>
             </div>
               
-            {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
-                { label: 'Client Repeat Order', value: '60%+', desc: 'Banyak klien kembali untuk project selanjutnya.' },
-                { label: 'On-time Delivery', value: '95%+', desc: 'Komitmen tinggi terhadap deadline yang disepakati.' },
-                { label: 'Focused Scope', value: '100%', desc: 'Satu project satu fokus, hasil maksimal.' },
+                { label: 'Client Repeat Order', value: '60%+', desc: 'Banyak yang lanjut ke project berikutnya.' },
+                { label: 'On-time Delivery', value: '95%+', desc: 'Menjaga komitmen terhadap deadline.' },
+                { label: 'Scope Jelas', value: '1 Project = 1 Fokus', desc: 'Menghindari hal-hal di luar brief awal.' },
               ].map((item, index) => (
-                <div key={index} className="p-8 rounded-3xl bg-white border border-gray-100 shadow-lg shadow-gray-100/50 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-center">
-                  <p className="text-xs font-bold tracking-[0.2em] text-primary-600 uppercase mb-3">
+                <div key={index} className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                  <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase mb-2">
                     {item.label}
                   </p>
-                  <p className="text-4xl font-extrabold text-gray-900 mb-2">
+                  <p className="text-xl font-semibold text-gray-900 mb-1">
                     {item.value}
                   </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-600">
                     {item.desc}
                   </p>
                 </div>
