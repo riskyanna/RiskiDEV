@@ -18,8 +18,17 @@ function Home() {
   const [pricingPackages, setPricingPackages] = useState([])
 
   useEffect(() => {
+    // Initial fetch
     fetchPortfolio()
     fetchPricing()
+
+    // Auto-refresh data every 5 seconds (Realtime feel)
+    const interval = setInterval(() => {
+      fetchPortfolio()
+      fetchPricing()
+    }, 5000)
+
+    return () => clearInterval(interval)
   }, [])
 
   const fetchPortfolio = async () => {
