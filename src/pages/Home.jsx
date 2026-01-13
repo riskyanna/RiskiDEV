@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { api } from '../lib/api'
+import SEO from '../components/SEO'
 import fastworkLogo from '../assets/logo fastwork.webp'
 
 function Home() {
@@ -92,6 +93,7 @@ function Home() {
 
   return (
     <div className="App">
+      <SEO />
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white/80 backdrop-blur-sm'

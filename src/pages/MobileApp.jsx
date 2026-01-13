@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { api } from '../lib/api'
+import SEO from '../components/SEO'
 
 export default function MobileApp() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -53,6 +54,11 @@ export default function MobileApp() {
 
   return (
     <div className="font-sans antialiased text-gray-900 bg-white selection:bg-indigo-100 selection:text-indigo-700">
+      <SEO 
+        title="Jasa Aplikasi Mobile Android & iOS Murah" 
+        description="Buat aplikasi Android/iOS untuk tugas akhir mahasiswa atau bisnis UMKM. Harga terjangkau, fitur lengkap, dan siap publish ke Play Store." 
+        keywords="jasa aplikasi android, jasa pembuatan aplikasi mobile, tugas akhir informatika, aplikasi skripsi murah"
+      />
       
       {/* Navigation */}
       {/* Navigation */}
