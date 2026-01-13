@@ -65,7 +65,7 @@ function Home() {
     } catch (error) {
       console.error('Failed to track order:', error)
     }
-    window.open('https://wa.me/62895396836264?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20website%20portfolio', '_blank')
+    window.open('https://wa.me/62895396836264?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20pembuatan%20website', '_blank')
   }
 
   const handleContactSubmit = (e) => {
@@ -1024,7 +1024,7 @@ function Home() {
 
       {/* Floating WhatsApp Button */}
       <a
-        href="https://wa.me/62895396836264?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20website%20portfolio"
+        href="https://wa.me/62895396836264?text=Halo,%20saya%20ingin%20konsultasi%20tentang%20pembuatan%20website"
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 group"
